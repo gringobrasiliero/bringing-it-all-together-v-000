@@ -48,6 +48,11 @@ def self.new_from_db(row)
   dog = self.new(id:row[0], name:row[1], breed:row[2])
 end
 
+def self.find_by_id
+DB[:conn].execute("SELECT * FROM dogs WHERE ID = ? LIMIT 1", id).map do |row|
+  self.new_from_db(row)
+end
+
 
 def self.find_or_create_by(name:, breed:)
   dog = DB[:conn].execute("SELECT * FROM dogs WHERE name = ? AND breed = ?", name, breed)
