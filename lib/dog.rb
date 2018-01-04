@@ -71,7 +71,7 @@ DB[:conn].execute("SELECT * FROM dogs WHERE name = ? LIMIT 1", name).map do |row
 end.first
 end
 
-def self.update
+def update
 DB[:conn].execute("UPDATE dogs SET name = ?, breed = ? WHERE id = ?",self.name, self.breed, self.id)
 end
 
